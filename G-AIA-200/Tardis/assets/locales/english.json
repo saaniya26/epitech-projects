@@ -1,0 +1,54 @@
+{
+    "sidebar": {
+        "home-section": "Home",
+        "home-section:homepage": "Home",
+        "ctrl-section": "Control Center",
+        "ctrl-section:panel": "Control Center",
+        "user": "User",
+        "not-authentified": "<NOT AUTHENTIFIED>",
+        "languages": "Languages"
+    },
+    "generic": {
+        "dates": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    },
+    "pages": {
+        "home": {
+            "title": "TARDIS - Home"
+        },
+        "panel": {
+            "title": "TARDIS - Late Trains Dashboard",
+            "model-fail": "Cannot load AI model",
+            "dataset-fail": "Cannot load dataset",
+            "man-pred:title": "Manual lateness prediction",
+            "man-pred:start-station": "Choose a departure station",
+            "man-pred:end-station": "Choose an arrival station",
+            "man-pred:n-travels": "Number of travels",
+            "man-pred:start-subtitle": "Lateness distribution (departures)",
+            "man-pred:end-subtitle": "Lateness distribution (arrivals)",
+            "man-pred:avg-journey-time": "Average travel time (min)",
+            "man-pred:n-trains-delayed": "Number of late trains",
+            "man-pred:n-sched-trains": "Number of late trains",
+            "man-pred:month": "Month",
+            "man-pred:weekday": "Day of the week",
+            "man-pred:predict": "Predict",
+            "man-pred:pred-fail": "Cannot load language model or make predictions",
+            "man-pred:pred-fail-nodat": "Usable data at this time is missing in reference dataset",
+            "man-pred:pred-success": "Predicted average departure delay",
+            "auto-pred:title": "Automatic lateness prediction",
+            "auto-pred:subtitle-start": "Average train lateness at departure",
+            "auto-pred:subtitle-end": "Average train lateness at arrival",
+            "auto-pred:month": "Month",
+            "auto-pred:weekday": "Day of the week",
+            "auto-pred:analysis": "Analysis",
+            "auto-pred:raw-data": "Raw data",
+            "auto-pred:pred-end-start": "Lateness prediction (departures) done!",
+            "auto-pred:pred-end-end": "Lateness prediction (arrivals) done!",
+            "auto-pred:pred-end-success": "Prediction success rate",
+            "auto-pred:pred-end-fail": "Prediction failure rate",
+            "auto-pred:pred-end-note": "Note: Failures can happen if the dataset lacks required data.",
+            "graphs:title": "Charts",
+            "graphs:start": "Late departures",
+            "graphs:end": "Late arrivals"
+        }
+    }
+}

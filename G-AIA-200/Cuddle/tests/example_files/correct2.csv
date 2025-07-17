@@ -1,0 +1,8 @@
+name,age,city,destroyed
+Alice,25.004185,Paris,true
+Bob,30.5,London,FALSE
+Charlie,35.56,Berlin,True
+Léo,25.1,Paris,False
+Nathan,30.05,London,TRUE
+Alex,35.0,Berlin,false
+Paul,25.99,Paris,true

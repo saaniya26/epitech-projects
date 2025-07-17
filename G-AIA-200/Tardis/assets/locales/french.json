@@ -1,0 +1,54 @@
+{
+    "sidebar": {
+        "home-section": "Accueil",
+        "home-section:homepage": "Accueil",
+        "ctrl-section": "Centre de Contrôle",
+        "ctrl-section:panel": "Centre de Contrôle",
+        "user": "Utilisateur",
+        "not-authentified": "<PAS AUTHENTIFIÉ>",
+        "languages": "Langages"
+    },
+    "generic": {
+        "dates": ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
+    },
+    "pages": {
+        "home": {
+            "title": "TARDIS - Accueil"
+        },
+        "panel": {
+            "title": "TARDIS - Dashboard des Retards de Train",
+            "model-fail": "Impossible de charger le modèle",
+            "dataset-fail": "Impossible de charger le fichier de données",
+            "man-pred:title": "Prédiction manuelle des retards",
+            "man-pred:start-station": "Chosir une station de départ",
+            "man-pred:end-station": "Chosir une station d'arrivée",
+            "man-pred:n-travels": "Nombre de trajets",
+            "man-pred:start-subtitle": "Distribution des retards (départ)",
+            "man-pred:end-subtitle": "Distribution des retards (arrivée)",
+            "man-pred:avg-journey-time": "Temps du trajet moyen (min)",
+            "man-pred:n-trains-delayed": "Nombre de trains en retard",
+            "man-pred:n-sched-trains": "Nombre de trains planifiés",
+            "man-pred:month": "Mois",
+            "man-pred:weekday": "Jour de la semaine",
+            "man-pred:predict": "Prédire les retards",
+            "man-pred:pred-fail": "Impossible de charger le modèle ou de faire une prédiction",
+            "man-pred:pred-fail-nodat": "Il n'existe aucune donnée exploitable dans la base de données à cette date",
+            "man-pred:pred-success": "Retard moyen prédit",
+            "auto-pred:title": "Prédiction automatique des retards",
+            "auto-pred:subtitle-start": "Retard moyen des trains au départ",
+            "auto-pred:subtitle-end": "Retard moyen des trains a l'arrivée",
+            "auto-pred:month": "Mois",
+            "auto-pred:weekday": "Jour de la semaine",
+            "auto-pred:analysis": "Analyse",
+            "auto-pred:raw-data": "Données brutes",
+            "auto-pred:pred-end-start": "Prédiction des retards (départs) effectuée!",
+            "auto-pred:pred-end-end": "Prédiction des retards (arrivées) effectuée!",
+            "auto-pred:pred-end-success": "Succès de prédiction",
+            "auto-pred:pred-end-fail": "Echecs de prédiction",
+            "auto-pred:pred-end-note": "Note: Les échecs peuvent arriver lorsque la base de donnée comprend des stations n'ayant pas les données nécessaires à la prédiction.",
+            "graphs:title": "Graphiques",
+            "graphs:start": "Retard des départs",
+            "graphs:end": "Retard des arrivées"
+        }
+    }
+}
