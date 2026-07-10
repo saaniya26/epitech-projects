@@ -1,0 +1,47 @@
+---
+- name: Install Redis
+  apt:
+    name: redis-server
+    state: present
+
+- name: Install Redis Python client
+  apt:
+    name: python3-redis
+    state: present
+
+- name: Create Redis configuration directory
+  file:
+    path: /etc/redis
+    state: directory
+    mode: '0755'
+
+- name: Deploy Redis configuration
+  template:
+    src: redis.conf
+    dest: /etc/redis/redis.conf
+    owner: redis
+    group: redis
+    mode: '0640'
+  register: redis_conf_changed
+
+- name: Set redis_changed fact
+  set_fact:
+    redis_changed: "{{ redis_conf_changed.changed }}"
+
+- name: Ensure Redis is started and enabled
+  systemd:
+    name: redis-server
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  when: not redis_changed
+
+- name: Restart Redis if configuration changed
+  systemd:
+    name: redis-server
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  when: redis_changed
+
+- import_tasks: ufw.yml

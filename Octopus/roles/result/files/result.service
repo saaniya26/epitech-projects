@@ -1,0 +1,18 @@
+[Unit]
+Description=Result Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ app_user }}
+Group={{ app_user }}
+WorkingDirectory={{ app_dir }}/result
+EnvironmentFile=/etc/default/result
+ExecStart=/usr/bin/node {{ app_dir }}/result/server.js
+Restart=always
+RestartSec=5
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target

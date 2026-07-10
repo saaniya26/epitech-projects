@@ -1,0 +1,96 @@
+---
+- name: Add PostgreSQL GPG key
+  ansible.builtin.get_url:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    dest: /etc/apt/trusted.gpg.d/postgresql.asc
+    mode: '0644'
+
+- name: Add PostgreSQL repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/postgresql.asc] http://apt.postgresql.org/pub/repos/apt {{ ansible_facts['distribution_release'] }}-pgdg main"
+    state: present
+
+- name: Install PostgreSQL 16
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - postgresql-16
+    - postgresql-contrib-16
+    - python3-psycopg2
+
+- name: Start and enable PostgreSQL service
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes
+
+- name: Configure pg_hba.conf
+  copy:
+    src: pg_hba.conf
+    dest: /etc/postgresql/16/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: '0640'
+  register: pg_hba_changed
+
+- name: Ensure PostgreSQL is listening on all interfaces
+  lineinfile:
+    path: /etc/postgresql/16/main/postgresql.conf
+    regexp: "^#?listen_addresses"
+    line: "listen_addresses = '*'"
+    state: present
+  register: postgresql_conf_changed
+
+- name: Restart PostgreSQL if configuration changed
+  systemd:
+    name: postgresql
+    state: restarted
+  when: pg_hba_changed.changed or postgresql_conf_changed.changed
+
+- name: Create PostgreSQL user
+  community.postgresql.postgresql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    state: present
+  become: true
+
+- name: Create database owned by {{ db_user }}
+  community.postgresql.postgresql_db:
+    name: "{{ db_name }}"
+    owner: "{{ db_user }}"
+    state: present
+  become: true
+
+- name: Copy schema file
+  copy:
+    src: schema.sql
+    dest: "{{ app_dir }}/schema.sql"
+    mode: '0644'
+  register: schema_copy_result
+
+- name: Import schema.sql
+  community.postgresql.postgresql_script:
+    login_db: "{{ db_name }}"
+    path: "{{ app_dir }}/schema.sql"
+  become: true
+  when: schema_copy_result.changed
+
+- name: Create permissions.sql
+  copy:
+    dest: "{{ app_dir }}/permissions.sql"
+    mode: '0644'
+    content: |
+      GRANT ALL PRIVILEGES ON TABLE votes TO {{ db_user }};
+      GRANT USAGE ON SCHEMA public TO {{ db_user }};
+      GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO {{ db_user }};
+  register: permissions_copy_result
+
+- name: Import permissions.sql
+  community.postgresql.postgresql_script:
+    login_db: "{{ db_name }}"
+    path: "{{ app_dir }}/permissions.sql"
+  become: true
+  when: permissions_copy_result.changed
+
+- import_tasks: ufw.yml

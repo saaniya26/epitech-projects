@@ -1,0 +1,47 @@
+---
+- name: Update apt cache and upgrade packages
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
+
+- name: Install common utilities
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - git
+      - unzip
+      - vim
+      - wget
+      - python3
+      - python3-pip
+    state: present
+
+- name: Ensure application user exists
+  ansible.builtin.user:
+    name: "{{ app_user }}"
+    shell: /bin/bash
+    create_home: true
+    state: present
+
+- name: Ensure application directory exists
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: "0755"
+
+- name: Ensure host entries exist
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '.*\s{{ item.name }}$'
+    line: '{{ item.ip }} {{ item.name }}'
+    state: present
+  loop:
+    - { ip: "{{ dev_worker_host }}", name: "worker-1" }
+    - { ip: "{{ dev_result_host }}", name: "result-1" }
+    - { ip: "{{ dev_poll_host }}", name: "poll-1" }
+    - { ip: "{{ dev_postgresql_host }}", name: "postgresql-1" }
+    - { ip: "{{ dev_redis_host }}", name: "redis-1" }
+  when: dev_supply_host_file | default(false)

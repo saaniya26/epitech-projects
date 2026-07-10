@@ -1,0 +1,31 @@
+---
+# Common variables for all hosts
+# NOTE: Do NOT store plaintext secrets here. Use Ansible Vault for `vault_db_password`.
+
+db_name: paul
+db_user: paul
+db_port: 5432
+redis_user: paulsquid
+redis_port: 6379
+app_user: runner
+app_dir: /opt/octopus
+
+# Testing-environnment specific variables
+# dev_supply_host_file: true
+# dev_redis_host: 174.138.32.248
+# dev_postgresql_host: 161.35.14.214
+# dev_poll_host: 165.22.11.63
+# dev_result_host: 206.189.182.62
+# dev_worker_host: 178.128.151.96
+
+# Vaulted secrets should be provided via Ansible Vault. Example usage:
+# vault_db_password: !vault |
+#   $ANSIBLE_VAULT;1.1;AES256
+#   <encrypted data here>
+
+# Safe reference (will be empty unless vault sets this):
+vault_file: "{{ playbook_dir }}/group_vars/vault.yml"
+
+db_password: "{{ vault_db_password | default('') }}"
+redis_password: "{{ vault_redis_password | default('') }}"
+ansible_become_password: "{{ vault_become_password | default('') }}"

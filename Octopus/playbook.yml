@@ -1,0 +1,60 @@
+---
+
+- name: Octopus - Base configuration (all hosts)
+  hosts: all
+  become: true
+  vars_files:
+    - group_vars/vault.yml
+    - group_vars/all.yml
+  roles:
+    - role: base
+
+- name: Octopus - PostgreSQL
+  hosts: postgresql
+  become: true
+  vars_files:
+    - group_vars/vault.yml
+    - group_vars/all.yml
+  roles:
+    - role: postgresql
+  tags: postgresql
+
+- name: Octopus - Redis
+  hosts: redis
+  become: true
+  vars_files:
+    - group_vars/vault.yml
+    - group_vars/all.yml
+  roles:
+    - role: redis
+  tags: redis
+
+- name: Octopus - Worker
+  hosts: worker
+  become: true
+  vars_files:
+    - group_vars/vault.yml
+    - group_vars/all.yml
+  roles:
+    - role: worker
+  tags: worker
+
+- name: Octopus - Poll web app
+  hosts: poll
+  become: true
+  vars_files:
+    - group_vars/vault.yml
+    - group_vars/all.yml
+  roles:
+    - role: poll
+  tags: poll
+
+- name: Octopus - Result web app
+  hosts: result
+  become: true
+  vars_files:
+    - group_vars/vault.yml
+    - group_vars/all.yml
+  roles:
+    - role: result
+  tags: result

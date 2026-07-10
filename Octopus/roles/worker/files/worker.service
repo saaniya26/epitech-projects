@@ -1,0 +1,16 @@
+[Unit]
+Description=Worker Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ app_user }}
+Group={{ app_user }}
+WorkingDirectory={{ app_dir }}/worker
+EnvironmentFile=/etc/default/worker
+ExecStart=/usr/bin/java -jar {{ app_dir }}/worker/target/worker-jar-with-dependencies.jar
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

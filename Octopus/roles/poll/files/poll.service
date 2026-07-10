@@ -1,0 +1,18 @@
+[Unit]
+Description=Poll Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User={{ app_user }}
+Group={{ app_user }}
+WorkingDirectory={{ app_dir }}/poll
+EnvironmentFile=/etc/default/poll
+ExecStart=/usr/bin/python3 {{ app_dir }}/poll/app.py
+Restart=always
+RestartSec=5
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target

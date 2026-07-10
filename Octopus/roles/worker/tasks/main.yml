@@ -1,0 +1,97 @@
+---
+- name: Install Java build dependencies
+  ansible.builtin.apt:
+    name:
+      - openjdk-21-jdk
+      - maven
+    state: present
+
+- name: Create worker application directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}/worker"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: "0755"
+    recurse: no
+
+- name: Copy worker application archive to target
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/worker.tar"
+    dest: "{{ app_dir }}/worker.tar"
+    owner: root
+    group: root
+    mode: "0644"
+  register: worker_copy_result
+
+- name: Extract worker application
+  ansible.builtin.unarchive:
+    src: "{{ app_dir }}/worker.tar"
+    dest: "{{ app_dir }}"
+    remote_src: true
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+  when: worker_copy_result.changed
+
+- name: Build worker application
+  ansible.builtin.command:
+    cmd: mvn -q -DskipTests package
+    chdir: "{{ app_dir }}/worker"
+  register: maven_build_result
+  when: worker_copy_result.changed
+
+- name: Create worker environment file
+  ansible.builtin.copy:
+    dest: /etc/default/worker
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      REDIS_HOST={{ hostvars[groups['redis'][0]].ansible_host | default(groups['redis'][0]) }}
+      REDIS_USER={{ redis_user }}
+      REDIS_PASSWORD={{ redis_password }}
+      POSTGRES_HOST={{ hostvars[groups['postgresql'][0]].ansible_host | default(groups['postgresql'][0]) }}
+      POSTGRES_PORT={{ db_port }}
+      POSTGRES_DB={{ db_name }}
+      POSTGRES_USER={{ db_user }}
+      POSTGRES_PASSWORD={{ db_password }}
+  register: worker_env_changed
+
+- name: Install worker systemd service
+  ansible.builtin.template:
+    src: worker.service
+    dest: /etc/systemd/system/worker.service
+    owner: root
+    group: root
+    mode: "0644"
+  register: worker_service_changed
+
+- name: Reload systemd for worker service
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Check if worker needs to be restarted
+  ansible.builtin.set_fact:
+    worker_changed: |
+      {{
+        worker_env_changed.changed
+        or worker_service_changed.changed
+        or worker_copy_result.changed
+        or maven_build_result.changed
+      }}
+
+- name: Enable and start worker service
+  ansible.builtin.systemd:
+    name: worker
+    enabled: true
+    state: started
+  when: not worker_changed
+
+- name: Restart worker service if configuration changed
+  ansible.builtin.systemd:
+    name: worker
+    enabled: true
+    state: restarted
+  when: worker_changed
+
+- import_tasks: ufw.yml

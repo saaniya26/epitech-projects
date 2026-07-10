@@ -1,0 +1,88 @@
+---
+- name: Install Node.js dependencies
+  ansible.builtin.apt:
+    name:
+      - nodejs
+      - npm
+    state: present
+
+- name: Create result application directory
+  ansible.builtin.file:
+    path: "{{ app_dir }}/result"
+    state: directory
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: "0755"
+    recurse: no
+
+- name: Copy result application archive to target
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/result.tar"
+    dest: "{{ app_dir }}/result.tar"
+    owner: root
+    group: root
+    mode: "0644"
+  register: result_copy_changed
+
+- name: Extract result application
+  ansible.builtin.unarchive:
+    src: "{{ app_dir }}/result.tar"
+    dest: "{{ app_dir }}"
+    remote_src: true
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+  when: result_copy_changed.changed
+
+- name: Install result Node.js dependencies
+  ansible.builtin.command:
+    cmd: npm install --production
+    chdir: "{{ app_dir }}/result"
+  register: npm_install_result
+  when: result_copy_changed.changed
+
+- name: Create result environment file
+  ansible.builtin.copy:
+    dest: /etc/default/result
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      POSTGRES_HOST={{ hostvars[groups['postgresql'][0]].ansible_host | default(groups['postgresql'][0]) }}
+      POSTGRES_PORT={{ db_port }}
+      POSTGRES_DB={{ db_name }}
+      POSTGRES_USER={{ db_user }}
+      POSTGRES_PASSWORD={{ db_password }}
+  register: result_env_changed
+
+- name: Install result systemd service
+  ansible.builtin.template:
+    src: result.service
+    dest: /etc/systemd/system/result.service
+    owner: root
+    group: root
+    mode: "0644"
+  register: result_service_changed
+
+- name: Reload systemd for result service
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Check if result needs to be restarted
+  ansible.builtin.set_fact:
+    result_changed: "{{ result_env_changed.changed or npm_install_result.changed or result_service_changed.changed or result_copy_changed.changed }}"
+
+- name: Enable and start result service
+  ansible.builtin.systemd:
+    name: result
+    enabled: true
+    state: started
+  when: not result_changed
+
+- name: Restart result service if configuration changed
+  ansible.builtin.systemd:
+    name: result
+    enabled: true
+    state: restarted
+  when: result_changed
+
+- import_tasks: ufw.yml
