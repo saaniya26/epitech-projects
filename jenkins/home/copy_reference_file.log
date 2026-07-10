@@ -1,0 +1,90 @@
+--- Copying files at Mon Apr 13 13:42:09 UTC 2026
+INSTALLED plugins/workflow-scm-step.jpi : 466.va_d69e602552b_
+INSTALLED plugins/mailer.jpi : 534.v1b_36f5864073
+INSTALLED plugins/apache-httpcomponents-client-4-api.jpi : 4.5.14-269.vfa_2321039a_83
+INSTALLED plugins/snakeyaml-api.jpi : 2.5-149.v72471e9c6371
+INSTALLED plugins/antisamy-markup-formatter.jpi : 173.v680e3a_b_69ff3
+INSTALLED plugins/git.jpi : 5.10.1
+INSTALLED plugins/git-client.jpi : 6.6.0
+INSTALLED plugins/jakarta-mail-api.jpi : 2.1.5-1
+INSTALLED plugins/token-macro.jpi : 477.vd4f0dc3cb_cf1
+INSTALLED plugins/github.jpi : 1.46.0
+INSTALLED plugins/role-strategy.jpi : 848.va_a_ea_673cf0b_c
+INSTALLED plugins/credentials.jpi : 1502.v5c95e620ddfe
+INSTALLED plugins/checks-api.jpi : 402.vca_263b_f200e3
+INSTALLED plugins/font-awesome-api.jpi : 7.2.0-965.ve3840b_696418
+INSTALLED plugins/jackson2-api.jpi : 2.21.2-433.v6d50b_92cfe52
+INSTALLED plugins/echarts-api.jpi : 6.0.0-1247.vf3e35a_c1813f
+INSTALLED plugins/ionicons-api.jpi : 94.vcc3065403257
+INSTALLED plugins/configuration-as-code.jpi : 2071.vea_ed8d491f81
+INSTALLED plugins/structs.jpi : 362.va_b_695ef4fdf9
+INSTALLED plugins/github-api.jpi : 1.330-492.v3941a_032db_2a_
+INSTALLED plugins/json-api.jpi : 20251224-185.v0cc18490c62c
+INSTALLED plugins/woodstox-core-api.jpi : 7.1.1-1.v4d297985f397
+INSTALLED plugins/workflow-step-api.jpi : 724.v538c2362b_dfb_
+INSTALLED plugins/json-path-api.jpi : 3.0.0-218.vcd4dd1355de2
+INSTALLED plugins/mina-sshd-api-common.jpi : 2.16.0-167.va_269f38cc024
+INSTALLED plugins/commons-lang3-api.jpi : 3.20.0-109.ve43756e2d2b_4
+INSTALLED plugins/asm-api.jpi : 9.9.1-189.vb_5ef2964da_91
+INSTALLED plugins/branch-api.jpi : 2.1280.v0d4e5b_b_460ef
+INSTALLED plugins/javax-activation-api.jpi : 1.2.0-8
+INSTALLED plugins/cloudbees-folder.jpi : 6.1079.vc0975c2de294
+INSTALLED plugins/bouncycastle-api.jpi : 2.30.1.83-289.v8426fcd19371
+INSTALLED plugins/instance-identity.jpi : 203.v15e81a_1b_7a_38
+INSTALLED plugins/resource-disposer.jpi : 0.25
+INSTALLED plugins/gson-api.jpi : 2.13.2-173.va_a_092315913c
+INSTALLED plugins/job-dsl.jpi : 3654.vdf58f53e2d15
+INSTALLED plugins/junit.jpi : 1403.vd9d1413fd205
+INSTALLED plugins/ws-cleanup.jpi : 0.49
+INSTALLED plugins/jakarta-xml-bind-api.jpi : 4.0.6-12.vb_1833c1231d3
+INSTALLED plugins/jackson3-api.jpi : 3.1.2-71.v0a_23916945fe
+INSTALLED plugins/jakarta-activation-api.jpi : 2.1.4-1
+INSTALLED plugins/mina-sshd-api-core.jpi : 2.16.0-167.va_269f38cc024
+INSTALLED plugins/plain-credentials.jpi : 199.v9f8e1f741799
+INSTALLED plugins/script-security.jpi : 1399.ve6a_66547f6e1
+INSTALLED plugins/snakeyaml-engine-api.jpi : 3.0.1-5.vd98ea_ff3b_92e
+INSTALLED plugins/ssh-credentials.jpi : 372.va_250881b_08cd
+INSTALLED plugins/caffeine-api.jpi : 3.2.3-194.v31a_b_f7a_b_5a_81
+INSTALLED plugins/scm-api.jpi : 728.vc30dcf7a_0df5
+INSTALLED plugins/commons-text-api.jpi : 1.15.0-218.va_61573470393
+INSTALLED plugins/jquery3-api.jpi : 3.7.1-619.vdb_10e002501a_
+INSTALLED plugins/workflow-support.jpi : 1015.v785e5a_b_b_8b_22
+INSTALLED plugins/plugin-util-api.jpi : 6.1192.v30fe6e2837ff
+INSTALLED plugins/bootstrap5-api.jpi : 5.3.8-895.v4d0d8e47fea_d
+INSTALLED plugins/prism-api.jpi : 1.30.0-717.vb_f8360844b_53
+INSTALLED plugins/variant.jpi : 70.va_d9f17f859e0
+INSTALLED plugins/workflow-api.jpi : 1413.v2ff1a_5e720fa_
+INSTALLED plugins/okhttp-api.jpi : 5.3.2-200.vedb_720a_cf1f8
+INSTALLED plugins/credentials-binding.jpi : 719.v80e905ef14eb_
+INSTALLED plugins/display-url-api.jpi : 2.217.va_6b_de84cc74b_
+INSTALLED plugins/jaxb.jpi : 2.3.9-143.v5979df3304e6
+INSTALLED plugins/matrix-project.jpi : 870.v9db_fcfc2f45b_
+--- Copied files finished at Mon Apr 13 13:42:11 UTC 2026
+--- Copying files at Mon Apr 13 14:38:31 UTC 2026
+--- Copied files finished at Mon Apr 13 14:38:31 UTC 2026
+--- Copying files at Mon Apr 13 14:52:15 UTC 2026
+--- Copied files finished at Mon Apr 13 14:52:16 UTC 2026
+--- Copying files at Mon Apr 13 14:56:51 UTC 2026
+--- Copied files finished at Mon Apr 13 14:56:52 UTC 2026
+--- Copying files at Mon Apr 13 15:30:45 UTC 2026
+--- Copied files finished at Mon Apr 13 15:30:46 UTC 2026
+--- Copying files at Mon Apr 13 15:35:28 UTC 2026
+--- Copied files finished at Mon Apr 13 15:35:28 UTC 2026
+--- Copying files at Mon Apr 13 16:16:34 UTC 2026
+--- Copied files finished at Mon Apr 13 16:16:35 UTC 2026
+--- Copying files at Mon Apr 13 16:38:18 UTC 2026
+--- Copied files finished at Mon Apr 13 16:38:18 UTC 2026
+--- Copying files at Mon Apr 13 16:49:41 UTC 2026
+--- Copied files finished at Mon Apr 13 16:49:42 UTC 2026
+--- Copying files at Mon Apr 13 16:53:57 UTC 2026
+--- Copied files finished at Mon Apr 13 16:53:58 UTC 2026
+--- Copying files at Mon Apr 13 17:04:41 UTC 2026
+--- Copied files finished at Mon Apr 13 17:04:42 UTC 2026
+--- Copying files at Mon Apr 13 17:06:38 UTC 2026
+--- Copied files finished at Mon Apr 13 17:06:39 UTC 2026
+--- Copying files at Mon Apr 13 17:09:11 UTC 2026
+--- Copied files finished at Mon Apr 13 17:09:12 UTC 2026
+--- Copying files at Mon Apr 13 17:22:17 UTC 2026
+--- Copied files finished at Mon Apr 13 17:22:18 UTC 2026
+--- Copying files at Tue Apr 14 12:51:57 UTC 2026
+--- Copied files finished at Tue Apr 14 12:51:58 UTC 2026

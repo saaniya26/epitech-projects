@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+    <actions/>
+    <description>Job Seed for creating and managing other jobs</description>
+    <keepDependencies>false</keepDependencies>
+    <properties>
+        <hudson.model.ParametersDefinitionProperty>
+            <parameterDefinitions>
+                <hudson.model.StringParameterDefinition>
+                    <name>GITHUB_NAME</name>
+                    <defaultValue/>
+                    <description>GitHub repository owner/repo_name (e.g.: "EpitechPGE2-2025/G-OOP-400-MAR-4-1-tekspice-23")</description>
+                </hudson.model.StringParameterDefinition>
+                <hudson.model.StringParameterDefinition>
+                    <name>DISPLAY_NAME</name>
+                    <defaultValue/>
+                    <description>Display name for the job</description>
+                </hudson.model.StringParameterDefinition>
+            </parameterDefinitions>
+        </hudson.model.ParametersDefinitionProperty>
+    </properties>
+    <scm class="hudson.scm.NullSCM"/>
+    <canRoam>true</canRoam>
+    <disabled>false</disabled>
+    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+    <triggers/>
+    <concurrentBuild>false</concurrentBuild>
+    <builders>
+        <hudson.tasks.Shell>
+            <command>cp /var/jenkins_home/job_dsl.groovy "$WORKSPACE/job_dsl.groovy"</command>
+        </hudson.tasks.Shell>
+        <javaposse.jobdsl.plugin.ExecuteDslScripts>
+            <targets>job_dsl.groovy</targets>
+            <usingScriptText>false</usingScriptText>
+            <scriptText/>
+            <ignoreExisting>false</ignoreExisting>
+            <removedJobAction>IGNORE</removedJobAction>
+            <removedViewAction>IGNORE</removedViewAction>
+            <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+            <additionalClasspath/>
+        </javaposse.jobdsl.plugin.ExecuteDslScripts>
+    </builders>
+    <publishers/>
+    <buildWrappers/>
+</project>

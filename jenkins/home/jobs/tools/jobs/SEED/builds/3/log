@@ -1,0 +1,8 @@
+Started by user [8mha:////4HeIq/jtIZHI73DIH650KuwOyUGbvXR/jfGKj9F/d77kAAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyWEgZB/dLi1CL95Iz85PycxJLU1DwA+joo78YAAAA=[0mHugo
+Running as SYSTEM
+Building in workspace /var/jenkins_home/jobs/tools/jobs/SEED/workspace
+[workspace] $ /bin/sh -xe /tmp/jenkins2048992949647560724.sh
++ cp /var/jenkins_home/job_dsl.groovy /var/jenkins_home/jobs/tools/jobs/SEED/workspace/job_dsl.groovy
+Processing DSL script job_dsl.groovy
+ERROR: script not yet approved for use
+Finished: FAILURE
